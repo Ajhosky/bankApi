@@ -30,4 +30,9 @@ public class BlikController {
         return blikRepository.checkBlikCode(code);
 
     }
+
+    @GetMapping("blik/createCode")
+        public String generateBlikCode(){
+        return blikRepository.generateBlikCode();
+    }
 }

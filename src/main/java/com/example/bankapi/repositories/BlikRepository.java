@@ -48,4 +48,8 @@ public class BlikRepository {
         }*/
 
     }
+
+    public String generateBlikCode() {
+
+    }
 }
