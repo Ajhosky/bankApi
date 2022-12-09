@@ -2,6 +2,7 @@ package com.example.bankapi.repositories;
 
 import com.example.bankapi.models.BlikModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,4 +23,29 @@ public class BlikRepository {
         );
 
     }
-       }
+
+    public String checkBlikCode(String code) {
+
+        try {
+            jdbcTemplate.queryForObject(
+                    "SELECT code FROM blik WHERE code = "+code,
+                    BeanPropertyRowMapper.newInstance(BlikModel.class));
+            return "podales dobry kod";
+        } catch (EmptyResultDataAccessException e) {
+            return "zly kod" + e.getMessage();
+        }
+
+
+        /*if(
+                jdbcTemplate.query(
+                "SELECT code FROM blik WHERE code = "+code,
+                BeanPropertyRowMapper.newInstance(BlikModel.class)
+        ) == code){
+            return "brawo zaplaciles";
+
+        }else {
+            return "zly kod blik";
+        }*/
+
+    }
+}

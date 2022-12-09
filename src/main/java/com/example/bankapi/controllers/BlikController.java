@@ -25,9 +25,9 @@ public class BlikController {
 
     }
 
-    @GetMapping("products/{code}")
-    public BlikModel showProductById(@PathVariable("code") int code){
-        return blikRepository.getBlikCodes(code);
+    @GetMapping("blik/{code}")
+    public String checkBlikCode(@PathVariable("code") String code){
+        return blikRepository.checkBlikCode(code);
 
     }
 }
